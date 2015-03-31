@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Constantin Kraft">
-    <link rel="shortcut icon" href="<?php echo base_url('bootstrap/ico/favicon.ico'); ?>">
+    <link rel="shortcut icon" href="<?php echo base_url('assets/ico/favicon.ico'); ?>">
     <title>
       <?php echo $this->lang->line('system_system_name'); ?></title>
       <!-- Bootstrap core CSS -->
-      <link href="<?php echo base_url('bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet">
+      <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
       <!-- Bootstrap theme -->
       <link href="<?php echo base_url('assets/css/bootstrap-theme.min.css'); ?>" rel="stylesheet">
       <!-- Custom styles for this template -->
