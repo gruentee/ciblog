@@ -45,6 +45,8 @@ class MY_Loader extends CI_Loader
      */
     function __construct()
     {
+        define('EXT', '.php');
+        
         if(!defined('SPARKPATH'))
         {
             define('SPARKPATH', 'sparks/');
