@@ -37,4 +37,31 @@ class Post extends MY_Controller
         // TODO: map author's user id to user name
         // TODO: maybe format date nicely here instead of view
     }
+    
+    /**
+     * View a single post
+     * 
+     * @param String slug by which to select post
+     *
+     */
+    public function view($slug)
+    {
+        // TODO: do validation
+        $post = $this->post_model->get_posts($slug);
+        if(count($post) > 0)
+        {
+            $this->data['main_content_view'] = $this->load->view(
+                'post/view',
+                array('post' => $post), TRUE
+            );
+        } 
+        else 
+        {
+            // TODO: localize message
+            // TODO: move to view
+            $this->data['main_content_view'] = "Post $slug nicht gefunden!";
+        }
+        $this->load->view('default', $this->data);
+    }
+    
 }
