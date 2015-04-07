@@ -34,7 +34,7 @@ class Post_model extends CI_Model
         // TODO: validate slug, maybe via routing
         //~ $query = $this->db->get_where('post', array('slug' => $slug));
         // TODO: sanitize slug
-        $sql = "SELECT `post`.*, `user`.username, `user`.id
+        $sql = "SELECT `post`.*, `user`.username, `user`.id as user_id
                 FROM `post`
                 INNER JOIN `user` ON `post`.author = `user`.id
                 WHERE `post`.slug = ?
