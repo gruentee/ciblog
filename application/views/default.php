@@ -14,10 +14,16 @@
     <title><?php echo (isset($title) ? $title : "");?> :: CodeIgniter Blog</title>
 
     <!-- Bootstrap core CSS -->
+<!--
     <link href="assets/css/bootstrap.css" rel="stylesheet">
+-->
+    <?php echo link_tag('assets/css/bootstrap.css'); ?>
 
     <!-- Custom styles for this template -->
+<!--
     <link href="assets/css/blog.css" rel="stylesheet">
+-->
+    <?php echo link_tag('assets/css/blog.css'); ?>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -44,8 +50,8 @@
     <div class="container">
       <!-- TODO: hier Seiten-Header einfügen -->
       <div class="blog-header">
-          <h1 class="blog-title">The Bootstrap Blog</h1>
-          <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
+          <h1 class="blog-title">The CodeIgniter Blog</h1>
+          <p class="lead blog-description">A simple blog built with CodeIgniter.</p>
       </div>
 
       <div class="row">
@@ -74,6 +80,7 @@
     </div><!-- /.container -->
 
     <footer class="blog-footer">
+      <p>&copy; <?php echo date("Y", time());?> <a href="https://websolutions.koeln" target="_blank">Constantin Kraft</a></p>
       <p>Blog template built for <a href="http://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
       <p>
         <a href="#">Back to top</a>
@@ -84,10 +91,10 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery-1.11.2.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery-1.11.2.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
   
 
 </body></html>
