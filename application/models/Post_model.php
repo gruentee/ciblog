@@ -21,25 +21,21 @@ class Post_model extends CI_Model
      */
     public function get_posts($slug = FALSE)
     {
+        $sql_select = "SELECT `post`.*, `user`.username, `user`.id as user_id
+                FROM `post`
+                INNER JOIN `user` ON `post`.author = `user`.id ";
+        $sql_where = "WHERE `post`.slug = ? AND `post`.active=1";
         if ($slug === FALSE ) 
         {
-            //~ $this->db->select('*');
-            //~ $this->db->from('post');
-            //~ $this->db->join('user', 'user.id=author');
             // TODO: limit # of posts -> pagination
-            $query = $this->db->get();
-            $this->db->query($sql);
+            //~ $query = $this->db->get();
+            $query = $this->db->query($sql_select);
             return $query->result_array();
         }
         // TODO: validate slug, maybe via routing
         //~ $query = $this->db->get_where('post', array('slug' => $slug));
         // TODO: sanitize slug
-        $sql = "SELECT `post`.*, `user`.username, `user`.id as user_id
-                FROM `post`
-                INNER JOIN `user` ON `post`.author = `user`.id
-                WHERE `post`.slug = ?
-                AND `post`.active=1";
-        $query = $this->db->query($sql, array($slug));
+        $query = $this->db->query($sql_select . $sql_where, array($slug));
         //~ echo($query);
         return $query->row_array();
     }
