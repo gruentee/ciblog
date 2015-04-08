@@ -40,7 +40,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$autoload['packages'] = array();
+//~ $autoload['packages'] = array();
+//~ $autoload['packages'] = array(APPPATH.'third_party/debugbar');
 
 
 /*
@@ -88,7 +89,7 @@ $autoload['drivers'] = array();
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array();
+$autoload['helper'] = array('date', 'url', 'html', 'string', 'debug');
 
 
 /*
