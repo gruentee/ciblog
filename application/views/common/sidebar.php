@@ -4,7 +4,8 @@
     <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
   </div>
   <div class="sidebar-module">
-    <!-- TODO: generate archive links dynamically -->
+    <!-- TODO: generate archive links dynamically 
+        -->
     <h4>Archives</h4>
     <ol class="list-unstyled">
       <li><a href="#">March 2014</a></li>

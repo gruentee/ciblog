@@ -34,21 +34,15 @@
 
   <body>
 
-    <!-- TODO: Navigation implementieren -->
-    <div class="blog-masthead">
-      <div class="container">
-        <nav class="blog-nav">
-          <a class="blog-nav-item active" href="#">Home</a>
-          <a class="blog-nav-item" href="#">New features</a>
-          <a class="blog-nav-item" href="#">Press</a>
-          <a class="blog-nav-item" href="#">New hires</a>
-          <a class="blog-nav-item" href="#">About</a>
-        </nav>
-      </div>
-    </div>
+    <!-- TODO: Navigation implementieren 
+      -->
+    <?php
+      echo $this->load->view('common/sitenav', '', TRUE);
+    ?>
 
     <div class="container">
-      <!-- TODO: hier Seiten-Header einfügen -->
+      <!-- TODO: hier Seiten-Header einfügen 
+        -->
       <div class="blog-header">
           <h1 class="blog-title">The CodeIgniter Blog</h1>
           <p class="lead blog-description">A simple blog built with CodeIgniter.</p>
@@ -58,7 +52,8 @@
 
         <div class="col-sm-8 blog-main">
 
-          <!-- TODO: hier Haupt-Inhalte eifügen -->
+          <!-- TODO: hier Haupt-Inhalte eifügen 
+            -->
             <?php echo $main_content_view; ?>
 
           <nav>
@@ -70,7 +65,8 @@
 
         </div><!-- /.blog-main -->
 
-        <!-- TODO: hier Sidebar einfügen -->
+        <!-- TODO: hier Sidebar einfügen 
+          -->
         <?php 
           $this->load->view('common/sidebar');
         ?>
@@ -81,7 +77,8 @@
 
     <footer class="blog-footer">
       <p>&copy; <?php echo date("Y", time());?> <a href="https://websolutions.koeln" target="_blank">Constantin Kraft</a></p>
-      <p>Blog template built for <a href="http://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p>Built with <?=anchor('https://codeigniter.com', 'CodeIgniter RC3')?><br>
+      Blog template built for <a href="http://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
       <p>
         <a href="#">Back to top</a>
       </p>
