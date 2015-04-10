@@ -55,6 +55,7 @@ $route['default_controller'] = 'post/index';
 
 $route['post'] = 'post';
 $route['post/(:any)'] = 'post/view/$1';
+$route['post/create'] = 'post/create';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
