@@ -40,4 +40,24 @@ class Post_model extends CI_Model
         return $query->row_array();
     }
     
+    /**
+     * insert single post
+     *
+     * @return boolean on post insertion, tag insertion fails quietly
+     */
+    public function insert() {
+        $slug = url_title($this->input->post('title'), 'dash');
+        $active = $this->input->post('active') == 'on' ? 1 : 0;
+        $date = mdate('%Y-%m-%d %H:%i:%s', now('Europe/Berlin'));
+        $data = array(
+            'author' => $this->input->post('author'),
+            'title'  => $this->input->post('title'),
+            'slug'   => $slug,
+            'text'   => $this->input->post('text'),
+            'category' => $this->input->post('category'),
+            'date_created' => $date,
+            'active' => $active
+        );
+        return $this->db->insert('post', $data);
+    }
 }
