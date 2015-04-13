@@ -53,6 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['(:any)'] = 'post/index';
 $route['default_controller'] = 'post/index';
 
+$route['page/([0-9]{1,2})'] = 'post/index/$1';
 $route['post'] = 'post';
 $route['post/(:any)'] = 'post/view/$1';
 $route['([0-9]{4})/([0-9]{1,2})'] = 'post/view_by_month/$1/$2';

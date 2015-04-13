@@ -18,14 +18,38 @@ class Post extends MY_Controller
         
         $this->load->helper($this->helpers);
         
-        $this->load->model('post_model');     
+        $this->load->model('post_model');    
+        
+        // pagination
+         $this->load->library('pagination');
+
+        $config['base_url'] = base_url('/page');
+        // TODO: set to # posts in DB ? 
+        //~ $config['total_rows'] = $this->db->count_all('post');
+        $config['total_rows'] = $this->post_model->get_number_of_posts();
+        $config['per_page'] = 5;
+        $config['display_pages'] = FALSE;
+        // TODO: l10n
+        $config['prev_link'] = '&laquo; Previous';
+        $config['next_link'] = '&raquo; Next';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+        $config['first_link'] = $config['last_link'] = FALSE;
+         //~ = FALSE;
+        $this->pagination->initialize($config);
+
+        $this->data['pagination'] = $this->pagination->create_links();
     }
     
     /**
      * Posts controller index method - show all posts 
      */
-    public function index() {
-        $posts = $this->post_model->get_posts();
+    public function index($offset=0) {
+        // TODO: sanitize & validate offset
+        
+        $posts = $this->post_model->get_posts($slug=FALSE, $offset);
         // render list view
         $list = $this->load->view('post/list', array("posts" => $posts), TRUE);
         //~ echo "<pre>";
@@ -45,13 +69,18 @@ class Post extends MY_Controller
      */
     public function view($slug)
     {
+
         // TODO: do validation
-        $post_items = $this->post_model->get_posts($slug);
-        if(count($post_items) > 0)
+        $post = $this->post_model->get_posts($slug);
+        if(count($post) > 0)
         {
+            $this->load->model('tag_model');
+            $tags = $this->tag_model->get_tags_by_post($post['id']);
+            // render post view into main view variable
             $this->data['main_content_view'] = $this->load->view(
                 'post/view',
-                array('post' => $post_items), TRUE
+                array('post' => $post,
+                      'tags' => $tags), TRUE
             );
         } 
         else 
