@@ -42,6 +42,7 @@ class Post_model extends CI_Model
             $this->db->select('post.*, `user`.username, `user`.id as user_id');
             $this->db->from('post');
             $this->db->join('`user`', 'post.author = user.id');
+            $this->db->where('post.active=1');
             $this->db->order_by('date_created', 'DESC');
             $query = $this->db->get();
             //~ $query = $this->db->query($sql_select);
@@ -103,9 +104,18 @@ class Post_model extends CI_Model
      * @param string value of slug identifying the category
      * @return array of post records or empty array
      */
-    public function get_by_gategory($slug)
+    public function get_by_category($slug)
     {
+        $this->db->select('`post`.*, username, user.id as user_id, category.*');
+        $this->db->from('post');
+        $this->db->join('user', 'post.author=user.id');
+        $this->db->join('category', 'post.category=category.id');
+        $this->db->where('post.active', 1);
+        $this->db->where('category.slug=', $slug);
+        $this->db->order_by('date_created', 'DESC');
+        $query = $this->db->get();
         
+        return $query->result_array();
     }
     
 }

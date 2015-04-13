@@ -64,7 +64,7 @@ class Post extends MY_Controller
     }
     
     /**
-     * Get posts by month
+     * Show posts by month
      * 
      * @return array of post records found or empty array
      */ 
@@ -91,6 +91,24 @@ class Post extends MY_Controller
         //~ $this->data->main_content_view = $post_items;
         $this->load->view('default', $this->data);
     }
+    
+    /**
+     * show posts by category
+     * 
+     * @param string slug of category 
+     * @return array of post records
+     */
+    public function view_by_category($slug)
+    {
+        // TODO: sanitize slug
+        $post_items = $this->post_model->get_by_category($slug);
+        $this->data['main_content_view'] = $this->load->view(
+            'post/list',
+            array('posts' => $post_items), TRUE
+        );
+        $this->load->view('default', $this->data);
+    }
+    
     
     /**
      * Create a post
