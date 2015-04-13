@@ -46,20 +46,49 @@ class Post extends MY_Controller
     public function view($slug)
     {
         // TODO: do validation
-        $post = $this->post_model->get_posts($slug);
-        if(count($post) > 0)
+        $post_items = $this->post_model->get_posts($slug);
+        if(count($post_items) > 0)
         {
             $this->data['main_content_view'] = $this->load->view(
                 'post/view',
-                array('post' => $post), TRUE
+                array('post' => $post_items), TRUE
             );
         } 
         else 
         {
             // TODO: localize message
             // TODO: move to view
-            $this->data['main_content_view'] = "Post $slug nicht gefunden!";
+            $this->data['main_content_view'] = "Post  nicht gefunden!";
         }
+        $this->load->view('default', $this->data);
+    }
+    
+    /**
+     * Get posts by month
+     * 
+     * @return array of post records found or empty array
+     */ 
+    public function view_by_month($year, $month) 
+    {
+        //~ $month = $this->input->get('month', TRUE);
+        //~ $year = $this->input->get('year', TRUE);
+        //~ printf("%d %d", $month, $year);
+        
+        if ( checkdate($month, 1, $year) == TRUE ) 
+        {
+            $post_items = $this->post_model->get_by_month($month, $year);
+            $this->data['main_content_view'] = $this->load->view(
+                'post/list',
+                array('posts' => $post_items), TRUE
+            );
+        }
+        else 
+        {
+            // TODO: send 404;
+            $this->data['main_content_view'] = "bla";
+        }        
+
+        //~ $this->data->main_content_view = $post_items;
         $this->load->view('default', $this->data);
     }
     
@@ -115,5 +144,4 @@ class Post extends MY_Controller
         
         $this->load->view('default', $this->data);
     }
-    
 }

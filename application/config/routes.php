@@ -55,6 +55,7 @@ $route['default_controller'] = 'post/index';
 
 $route['post'] = 'post';
 $route['post/(:any)'] = 'post/view/$1';
+$route['([0-9]{4})/([0-9]{1,2})'] = 'post/view_by_month/$1/$2';
 $route['post/create'] = 'post/create';
 
 $route['404_override'] = '';
