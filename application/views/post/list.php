@@ -3,7 +3,7 @@ if(count($posts) > 0 ):
 foreach($posts as $post): ?>
 <div class="blog-post">
     <h2 class="blog-post-title">
-        <a href="<?=base_url('post/' . $post['slug'])?>"><?php echo $post['title'];?></a>
+        <a href="<?=base_url('post/' . strtolower($post['slug']))?>"><?php echo $post['title'];?></a>
     </h2>
     <!-- TODO: output author as link to author page 
         -->

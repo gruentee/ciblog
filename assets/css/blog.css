@@ -149,6 +149,14 @@ h6, .h6 {
   color: #999;
 }
 
+p.tags { 
+  border-top: 1px dotted #ccc;
+  padding: 10px;
+  margin: 10px;
+}
+p.tags a.label.label-default {
+  margin: 3px;
+}
 
 /*
  * Footer
