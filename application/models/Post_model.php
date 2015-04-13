@@ -27,8 +27,9 @@ class Post_model extends CI_Model
      * @param String slug identifying the post
      * @return Array array of record OR rows found
      */
-    public function get_posts($slug=FALSE)
+    public function get_posts($slug=FALSE, $offset=0)
     {
+        // TODO: refactor to generic get method with hash arg filter options
         //~ $this->db->order_by('`post`.date_created', 'DESC');        
         $sql_select = "SELECT `post`.*, username, user.id as user_id
                 FROM `post`
@@ -43,6 +44,7 @@ class Post_model extends CI_Model
             $this->db->from('post');
             $this->db->join('`user`', 'post.author = user.id');
             $this->db->where('post.active=1');
+            $this->db->limit(10, $offset);
             $this->db->order_by('date_created', 'DESC');
             $query = $this->db->get();
             //~ $query = $this->db->query($sql_select);
@@ -106,7 +108,7 @@ class Post_model extends CI_Model
      */
     public function get_by_category($slug)
     {
-        $this->db->select('`post`.*, username, user.id as user_id, category.*');
+        $this->db->select('`post`.*, username, user.id as user_id, category.slug AS cslug');
         $this->db->from('post');
         $this->db->join('user', 'post.author=user.id');
         $this->db->join('category', 'post.category=category.id');
@@ -116,6 +118,19 @@ class Post_model extends CI_Model
         $query = $this->db->get();
         
         return $query->result_array();
+    }
+ 
+    /**
+     * get number of posts in database
+     * 
+     * @param boolean post.active=1
+     * @return int number of posts
+     */
+    public function get_number_of_posts($active=TRUE)
+    {
+        $active = $active === TRUE ? ' WHERE active=1' : '';
+        return $this->db->query('SELECT COUNT(*) AS `numrows` FROM `post`' . $active)
+            ->row()->numrows;
     }
     
 }
