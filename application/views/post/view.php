@@ -6,7 +6,7 @@
     von <a href="<?php echo base_url('author/' . $post['user_id']); ?>"><?php echo $post['username']; ?></a>
     </p>
     <?php echo $post['text'];?>
-    <?php if(isset($tags)): ?>
+    <?php if(count($tags) > 0): ?>
         <p class="tags">Tags:
         <?php 
         foreach ($tags as $tag) 
