@@ -13,28 +13,42 @@
  *              without the "_model" string (model name: User_model; table: users).
  *          $this->primary = unique key | OPTIONAL (default: 'id')
  *          $this->timestamps = TRUE | array('made_at','modified_at','removed_at')
- *              If set to TRUE tells MY_Model that the table has 'created_at','updated_at' (and 'deleted_at' if $this->soft_delete is set to TRUE)
- *              If given an array as parameter, it tells MY_Model, that the first element is a created_at field type, the second element is a updated_at field type (and the third element is a deleted_at field type)
+ *              If set to TRUE tells MY_Model that the table has 'created_at','updated_at'
+ *              (and 'deleted_at' if $this->soft_delete is set to TRUE)
+ *              If given an array as parameter, it tells MY_Model, that the first element is a created_at field type,
+ *              the second element is a updated_at field type (and the third element is a deleted_at field type)
  *          $this->soft_deletes = FALSE
  *              Enables (TRUE) or disables (FALSE) the "soft delete" on records. Default is FALSE
  *          $this->return_as = 'object' | 'array'
  *              Allows the model to return the results as object or as array
- *          $this->has_one['phone'] = 'Phone_model' or $this->has_one['phone'] = array('Phone_model','foreign_key','local_key');
- *          $this->has_one['address'] = 'Address_model' or $this->has_one['address'] = array('Address_model','foreign_key','another_local_key');
+ *          $this->has_one['phone'] = 'Phone_model' or $this->has_one['phone'] = array('Phone_model','foreign_key',
+ *              'local_key');
+ *          $this->has_one['address'] = 'Address_model' or $this->has_one['address'] = array('Address_model','foreign_key',
+ *              'another_local_key');
  *              Allows establishing ONE TO ONE or more ONE TO ONE relationship(s) between models/tables
- *          $this->has_many['posts'] = 'Post_model' or $this->has_many['posts'] = array('Posts_model','foreign_key','another_local_key');
+ *          $this->has_many['posts'] = 'Post_model' or $this->has_many['posts'] = array('Posts_model','foreign_key',
+ *              'another_local_key');
  *              Allows establishing ONE TO MANY or more ONE TO MANY relationship(s) between models/tables
- *          $this->has_many_pivot['posts'] = 'Post_model' or $this->has_many_pivot['posts'] = array('Posts_model','foreign_primary_key','local_primary_key');
- *              Allows establishing MANY TO MANY or more MANY TO MANY relationship(s) between models/tables with the use of a PIVOT TABLE
- *              !ATTENTION: The pivot table name must be composed of the two table names separated by "_" the table names having to to be alphabetically ordered (NOT users_posts, but posts_users).
- *                  Also the pivot table must contain as identifying columns the columns named by convention as follows: table_name_singular + _ + foreign_table_primary_key.
- *                  For example: considering that a post can have multiple authors, a pivot table that connects two tables (users and posts) must be named posts_users and must have post_id and user_id as identifying columns for the posts.id and users.id tables.
+ *          $this->has_many_pivot['posts'] = 'Post_model' or $this->has_many_pivot['posts'] = array('Posts_model',
+*               'foreign_primary_key','local_primary_key');
+ *              Allows establishing MANY TO MANY or more MANY TO MANY relationship(s) between models/tables with the use
+ *              of a PIVOT TABLE
+ *              !ATTENTION: The pivot table name must be composed of the two table names separated by "_" the table names
+*                      having to to be alphabetically ordered (NOT users_posts, but posts_users).
+ *                  Also the pivot table must contain as identifying columns the columns named by convention as follows:
+ *                  table_name_singular + _ + foreign_table_primary_key.
+ *                  For example: considering that a post can have multiple authors, a pivot table that connects two tables
+ *                  (users and posts) must be named posts_users and must have post_id and user_id as identifying columns for the
+ *                  posts.id and users.id tables.
  *          $this->cache_driver = 'file'
  *          $this->cache_prefix = 'mm'
- *              If you know you will do some caching of results without the native caching solution, you can at any time use the MY_Model's caching.
+ *              If you know you will do some caching of results without the native caching solution, you can at any time
+ *                  use the MY_Model's caching.
  *              By default, MY_Model uses the files to cache result.
- *              If you want to change the way it stores the cache, you can change the $cache_driver property to whatever CodeIgniter cache driver you want to use.
- *              Also, with $cache_prefix, you can prefix the name of the caches. by default any cache made by MY_Model starts with 'mm' + _ + "name chosen for cache"
+ *              If you want to change the way it stores the cache, you can change the $cache_driver property to whatever
+ *                  CodeIgniter cache driver you want to use.
+ *              Also, with $cache_prefix, you can prefix the name of the caches. by default any cache made by MY_Model
+ *              starts with 'mm' + _ + "name chosen for cache"
  *          $this->pagination_delimiters = array('<span>','</span>');
  *              If you know you will use the paginate() method, you can change the delimiters between the pages links
  *          $this->pagination_arrows = array('&lt;','&gt;');
@@ -980,7 +994,7 @@ class MY_Model extends CI_Model
     }
     private function _get_table_name($model_name)
     {
-        $table_name = plural(preg_replace('/(_m|_model)?$/', '', strtolower($model_name)));
+        $table_name = preg_replace('/(_m|_model)?$/', '', strtolower($model_name));
         return $table_name;
     }
 
